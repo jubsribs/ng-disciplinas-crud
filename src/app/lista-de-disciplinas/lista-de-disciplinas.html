@@ -1,0 +1,21 @@
+<h1> Disciplinas</h1>
+<hr>
+
+<ul>
+    @for (disciplina of disciplinas; track $index){
+    <li (click)="selecionar(disciplina)">
+
+        <p [class.selecionado]="selecionado?.nome==disciplina.nome"> {{disciplina.nome}}</p>
+        <button (click)="excluir(disciplina)">
+            Excluir
+        </button>
+        <button (click)="editar(disciplina)">
+            Editar
+        </button>
+        @if (selecionado?.nome == disciplina.nome){
+        <p> {{disciplina.descricao}}</p>
+        }
+    </li>
+    }
+
+</ul>
