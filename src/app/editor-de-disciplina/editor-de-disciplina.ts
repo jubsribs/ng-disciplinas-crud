@@ -17,7 +17,10 @@ export class EditorDeDisciplina {
   descricao: string | null  = "";
 
   @Input()
-  disciplinas= [new Disciplina(" "," ")];
+  id:number = 0
+
+  @Input()
+  disciplinas= [new Disciplina(0," "," ")];
 
   @Input()
   editando : Disciplina | null = null;
@@ -40,7 +43,8 @@ export class EditorDeDisciplina {
   }
 
   salvar() {
-    this.onSalvar.emit();
+      const novaDisciplina = new Disciplina(this.id,this.nome || '', this.descricao || '');
+      this.onSalvar.emit(novaDisciplina);
   }
 
   cancelar() {

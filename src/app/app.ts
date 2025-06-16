@@ -5,6 +5,7 @@ import { EditorDeDisciplina } from './editor-de-disciplina/editor-de-disciplina'
 import { CommonModule } from '@angular/common';
 import { Disciplina } from './disciplina.model';
 import { FormsModule } from '@angular/forms';
+import { DisciplinasService } from './disciplinas';
 
 @Component({
   selector: 'app-root',
@@ -16,27 +17,26 @@ export class App {
   selecionado : null | Disciplina = null
   nome : string | null = "";
   descricao: string | null  = "";
-  editando : Disciplina | null = null;
+  editando : Disciplina = new Disciplina(0,"", "");
+  disciplinas: Array<Disciplina> | null = null;
 
-  disciplinas = [new Disciplina("Lingua Portuguesa", "Essa matéria fala portugues")];
+  constructor (private disciplinaService: DisciplinasService){
+    this.disciplinas = this.disciplinaService.todas()
+  }
  
   selecionar(disciplina: Disciplina){
     this.selecionado=disciplina
   }
 
   salvar() {
-    if (this.editando) {
-      console.log(this.editando)
-      this.editando.nome = this.nome;
-      console.log(this.editando.nome)
-      this.editando.descricao = this.descricao;
-    } else {
-      const d = new Disciplina(this.nome, this.descricao);
-      this.disciplinas.push(d);
-    }
-    this.nome = " ";
-    this.descricao = " ";
-    this.editando = null;
+   try{
+    const salveDisciplina = this.disciplinaService.salvar(this.editando?.id,this.editando?.nome,this.editando?.descricao)
+    this.editando = new Disciplina(0,"", "");
+   }
+   catch(e){
+      console.log(e)
+   }
+
   }
 
   excluir(disciplina:Disciplina) {
@@ -45,15 +45,19 @@ export class App {
     } else {
       if (confirm('Tem certeza que deseja excluir a disciplina "'
           + disciplina.nome + '"?')) {
-        const i = this.disciplinas.indexOf(disciplina);
-        this.disciplinas.splice(i, 1);
+
+            try{
+              this.disciplinaService.excluir(disciplina)
+            }
+            catch(e){
+              console.log(e)
+            }
       }
     }
   }
 
   editar(disciplina:Disciplina) {
     this.nome = disciplina.nome;
-    console.log(this.nome)
     this.descricao = disciplina.descricao;
     this.editando = disciplina;
   }
@@ -61,7 +65,7 @@ export class App {
   cancelar() {
     this.nome = " ";
     this.descricao =  " ";
-    this.editando = null;
+    this.editando = new Disciplina(0,"", "");
   }
 
 }
