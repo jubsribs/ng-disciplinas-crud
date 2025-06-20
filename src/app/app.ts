@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {ListaDeDisciplinas} from "./lista-de-disciplinas/lista-de-disciplinas"
-import { EditorDeDisciplina } from './editor-de-disciplina/editor-de-disciplina';
 import { CommonModule } from '@angular/common';
 import { Disciplina } from './disciplina.model';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +7,7 @@ import { DisciplinasService } from './disciplinas';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ListaDeDisciplinas,CommonModule,FormsModule,EditorDeDisciplina],
+  imports: [RouterOutlet,CommonModule,FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -17,29 +15,45 @@ export class App {
   selecionado : null | Disciplina = null
   nome : string | null = "";
   descricao: string | null  = "";
-  editando : Disciplina = new Disciplina(0,"", "");
-  disciplinas: Array<Disciplina> | null = null;
+  editando: Disciplina | null = null
+  disciplinas: Disciplina[] = []
 
   constructor (private disciplinaService: DisciplinasService){
-    this.disciplinas = this.disciplinaService.todas()
+this.atualizarLista();
   }
  
+  atualizarLista(){
+    this.disciplinaService.todas().subscribe( disciplinas => this.disciplinas = disciplinas)
+  }
+
   selecionar(disciplina: Disciplina){
     this.selecionado=disciplina
   }
 
   salvar() {
-   try{
-    const salveDisciplina = this.disciplinaService.salvar(this.editando?.id,this.editando?.nome,this.editando?.descricao)
-    this.editando = new Disciplina(0,"", "");
-   }
-   catch(e){
-      console.log(e)
-   }
+    if(this.editando){
+      try{
+        this.disciplinaService.salvar(this.editando?.id,this.nome as string).subscribe(disciplina => {
+         this.atualizarLista();
+        })
+     
+        }
+        catch(e){
+           console.log(e)
+        }     
+    }else{
+      try{
+        this.disciplinaService.salvar(null,this.nome as string)
+      }
+      catch(e){
+        console.log(e)
+      }
+
+    }
 
   }
 
-  excluir(disciplina:Disciplina) {
+ excluir(disciplina:Disciplina) {
     if (this.editando == disciplina) {
       alert('Você não pode excluir uma disciplina que está editando');
     } else {
@@ -47,7 +61,8 @@ export class App {
           + disciplina.nome + '"?')) {
 
             try{
-              this.disciplinaService.excluir(disciplina)
+             {
+            } this.disciplinaService.excluir(disciplina.id)
             }
             catch(e){
               console.log(e)
@@ -58,14 +73,11 @@ export class App {
 
   editar(disciplina:Disciplina) {
     this.nome = disciplina.nome;
-    this.descricao = disciplina.descricao;
     this.editando = disciplina;
   }
 
   cancelar() {
-    this.nome = " ";
-    this.descricao =  " ";
-    this.editando = new Disciplina(0,"", "");
+    this.disciplinaService.cancelar()
   }
 
 }

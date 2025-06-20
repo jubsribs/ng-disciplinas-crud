@@ -1,18 +1,20 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Disciplina } from '../disciplina.model';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-lista-de-disciplinas',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule,RouterModule],
   templateUrl: './lista-de-disciplinas.html',
   styleUrl: './lista-de-disciplinas.css'
 })
 export class ListaDeDisciplinas {
 
   @Input()
-  disciplinas= [new Disciplina(" "," ")];
+  disciplinas= [new Disciplina(0," "," ")];
 
   @Input()
   editando : Disciplina | null = null;

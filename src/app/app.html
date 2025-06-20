@@ -1,24 +1,5 @@
 <main class="main">
 
-
-<app-editor-de-disciplina
-[nome]="nome"
-[descricao]="descricao"
-[disciplinas]="disciplinas"
-[editando]="editando"
-(onSalvar)="salvar($event)"
-(onCancelar)="cancelar()">
-</app-editor-de-disciplina>
-
-<app-lista-de-disciplinas  
-[disciplinas]="disciplinas" 
-[editando]="editando"
-[selecionado]="selecionado"
-(onEditar)="editar($event)" 
-(onExcluir)="excluir($event)"
-(onSelecionar)="selecionar($event)">
-</app-lista-de-disciplinas>
-
 </main>
 
 <router-outlet />
