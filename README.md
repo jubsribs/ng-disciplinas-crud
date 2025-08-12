@@ -18,9 +18,12 @@ Aplicativo desenvolvido em **Angular (versão 20)** com **TypeScript** para gere
 ---
 
 ## 🖼️ Demonstração
-> *Adicione aqui uma imagem ou GIF do funcionamento do projeto*
 
-![Screenshot do Projeto](./screenshot.png)
+#Tela Inicial
+<img width="215" height="101" alt="image" src="https://github.com/user-attachments/assets/42dfd3cf-c0b1-4108-b587-b4bad4cc1476" />
+
+
+
 
 ---
 
@@ -50,8 +53,29 @@ Aplicativo desenvolvido em **Angular (versão 20)** com **TypeScript** para gere
    ```bash
       http://localhost:4200
 
+2️⃣ Rodar o backend local (necessário para exibir as disciplinas)
+Este projeto consome dados de uma API local baseada em json-server.
+Para rodar o backend, utilize o projeto disponível em:
+
+1. **Clone o repositório**
+git clone https://github.com/jacksongomesbr/angular-escola-api.git
+
+2. **Entre na pasta do projeto:**
+   ```bash
+    cd angular-escola-api
+
+3. **Instale as dependências:**
+   ```bash
+    npm install
+4. **Inicialize o backend:**
+   ```bash
+    npm start
+5. **A API estará rodando em:**
+   ```bash
+      http://localhost:3000
+
 ## 📖 Documentação do Angular
-[![Acessar Documentação](https://img.shields.io/badge/Angular-Docs-red?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/docs)
+[![Acessar Documentação](https://img.shields.io/badge/Angular-Docs-red?style=for-the-badge&logo=angular&logoColor=white)](https://angular.dev/overview))
 
 📌 Base do projeto
 Este projeto foi baseado no material:
