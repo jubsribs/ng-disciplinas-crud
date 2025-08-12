@@ -38,12 +38,16 @@ Aplicativo desenvolvido em **Angular (versão 20)** com **TypeScript** para gere
    ```bash
    git clone https://github.com/jubsribs/ng-disciplinas-crud.git
 2. **Entre na pasta do projeto:**
+   ```bash
         cd ng-disciplinas-crud
-3. **Instale as dependências:**
+4. **Instale as dependências:**
+   ```bash
       npm install
-4. **Execute o projeto:**
+6. **Execute o projeto:**
+   ```bash
       ng serve --reload
-5. **Abra o navegador e acesse:**
+8. **Abra o navegador e acesse:**
+   ```bash
       http://localhost:4200
 
 ## 📖 Documentação do Angular
