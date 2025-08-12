@@ -36,7 +36,7 @@ Aplicativo desenvolvido em **Angular (versão 20)** com **TypeScript** para gere
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/SEU-USUARIO/SEU-REPOSITORIO.git
+   git clone https://github.com/jubsribs/ng-disciplinas-crud.git
 2. **Entre na pasta do projeto:**
         cd ng-disciplinas-crud
 3. **Instale as dependências:**
