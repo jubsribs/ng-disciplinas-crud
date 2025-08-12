@@ -19,7 +19,7 @@ Aplicativo desenvolvido em **Angular (versão 20)** com **TypeScript** para gere
 
 ## 🖼️ Demonstração
 
-#Tela Inicial
+## Tela Inicial
 <img width="215" height="101" alt="image" src="https://github.com/user-attachments/assets/42dfd3cf-c0b1-4108-b587-b4bad4cc1476" />
 
 
